@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+// Production API URL - hardcoded to avoid environment variable issues
+const API_URL = 'https://daabi-com.onrender.com/api';
+
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://daabi-com.onrender.com/api',
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json'
   }
