@@ -1,0 +1,153 @@
+.create-demand-page {
+  padding: 20px 0;
+}
+
+.create-demand-page .container {
+  max-width: 800px;
+}
+
+.demand-form .card-body {
+  padding: 32px;
+}
+
+.demand-form .card-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 32px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+/* File Upload */
+.file-upload-area {
+  border: 2px dashed #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.file-upload-area:hover {
+  border-color: var(--primary);
+  background: #667eea08;
+}
+
+.file-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  cursor: pointer;
+  text-align: center;
+  gap: 8px;
+}
+
+.file-upload-label svg {
+  font-size: 2.5rem;
+  color: var(--gray);
+}
+
+.file-upload-label span {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.file-upload-label small {
+  color: var(--gray);
+}
+
+.file-list {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+.file-name {
+  font-size: 0.9rem;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-remove {
+  border: none;
+  background: none;
+  color: var(--danger);
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+}
+
+/* Checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.checkbox-label input {
+  display: none;
+}
+
+.checkmark {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.checkbox-label input:checked + .checkmark {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.checkbox-label input:checked + .checkmark::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .demand-form .card-footer {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .demand-form .card-footer .btn {
+    width: 100%;
+  }
+}

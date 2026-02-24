@@ -1,0 +1,83 @@
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+
+// Protect routes
+exports.protect = async (req, res, next) => {
+  let token;
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1];
+  }
+
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      message: 'এই রিসোর্স অ্যাক্সেস করতে লগইন করুন'
+    });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = await User.findById(decoded.id);
+    
+    if (!req.user) {
+      return res.status(401).json({
+        success: false,
+        message: 'ব্যবহারকারী পাওয়া যায়নি'
+      });
+    }
+
+    if (!req.user.isActive) {
+      return res.status(401).json({
+        success: false,
+        message: 'আপনার অ্যাকাউন্ট নিষ্ক্রিয় করা হয়েছে'
+      });
+    }
+
+    next();
+  } catch (error) {
+    return res.status(401).json({
+      success: false,
+      message: 'অনুমোদিত নয়'
+    });
+  }
+};
+
+// Grant access to specific roles
+exports.authorize = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({
+        success: false,
+        message: `${req.user.role} role এই রিসোর্স অ্যাক্সেস করতে পারবে না`
+      });
+    }
+    next();
+  };
+};
+
+// Optional auth - doesn't require login but will attach user if logged in
+exports.optionalAuth = async (req, res, next) => {
+  let token;
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1];
+  }
+
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = await User.findById(decoded.id);
+    } catch (error) {
+      // Token invalid, continue without user
+    }
+  }
+
+  next();
+};

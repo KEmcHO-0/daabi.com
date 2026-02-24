@@ -1,0 +1,131 @@
+.profile-page {
+  padding: 20px 0;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Sidebar */
+.profile-sidebar {
+  padding: 32px;
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  background: var(--gradient);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 auto 20px;
+}
+
+.profile-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.profile-email {
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+
+.profile-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.profile-meta span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.role-badge.student {
+  background: #eff6ff;
+  color: var(--primary);
+}
+
+.role-badge.committee {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.role-badge.admin {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Tabs */
+.profile-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gray);
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  background: #f3f4f6;
+}
+
+.tab-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* Form */
+.profile-form .card-body {
+  padding: 32px;
+}
+
+.profile-form .card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-tabs {
+    flex-direction: column;
+  }
+}
